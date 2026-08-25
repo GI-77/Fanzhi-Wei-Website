@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hair Glove — Fanzhi Wei</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- Header -->
+
+    <header class="site-header">
+
+        <a href="index.html" class="artist-name">
+            Fanzhi Wei
+        </a>
+
+
+        <nav class="main-navigation">
+
+            <a href="index.html">
+                Overview
+            </a>
+
+
+            <div class="work-menu">
+
+                <a href="select-work.html" class="work-link">
+                    Select Work
+                </a>
+
+
+                <div class="work-dropdown">
+
+                    <a href="entangled-body.html">
+                        Entangled Body
+                    </a>
+
+                    <a href="a-place-to-grow.html">
+                        A Place to Grow
+                    </a>
+
+                    <a href="Hair Glove.html">
+                        Hair Glove
+                    </a>
+
+                    <a href="printmaking.html">
+                        Printmaking
+                    </a>
+
+                    <a href="ceramics.html">
+                        Ceramics
+                    </a>
+
+                    <a href="material-trace.html">
+                        Material / Trace
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <a href="about.html">
+                About
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- Project Page -->
+
+    <main class="project-page">
+
+
+        <!-- Project Header -->
+
+        <section class="project-header">
+
+            <h1>
+                Hair Glove
+            </h1>
+
+
+            <div class="project-statement">
+
+                <p>
+                    Hair Glove explores the fragile boundary between the body
+                    and its material extensions. Light, delicate and
+                    vulnerable, hair is woven into a glove that
+                    simultaneously constrains, constructs and replaces
+                    the skin. The works question whether a material can
+                    become part of the body, while reflecting on
+                    intimacy, vulnerability and the limits of bodily
+                    presence.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Project Images -->
+
+        <section class="project-images">
+
+
+            <!-- Artwork 01 -->
+
+            <figure class="project-image">
+
+                <img
+                    class="portrait-image"
+                    src="images/Hair-Glove-13 x20cm.jpg"
+                    alt="Hair Glove"
+                >
+
+                <figcaption>
+                    Hair Glove, 2023<br>
+                    Etching<br>
+                    13 × 20 cm, Edition of 12
+                </figcaption>
+
+            </figure>
+
+
+
+            <!-- Artwork 02 -->
+
+            <figure class="project-image">
+
+                <img
+                    class="portrait-image"
+                    src="images/Hair Glove-13 x20cm Etching-framed.jpg"
+                    alt="Hair Glove — Framed"
+                >
+
+                <figcaption>
+                    Hair Glove, 2023<br>
+                    Etching<br>
+                    13 × 20 cm, Edition of 12
+                </figcaption>
+
+            </figure>
+
+
+
+            <!-- Artwork 03 -->
+
+            <figure class="project-image">
+
+                <img
+                    class="portrait-image"
+                    src="images/Hair Glove.jpg"
+                    alt="The Glove"
+                >
+
+                <figcaption>
+                    The Glove, 2023<br>
+                    Human hair<br>
+                    Sculpture
+                </figcaption>
+
+            </figure>
+
+
+        </section>
+
+
+
+        <!-- Artwork Information -->
+
+        <section class="artwork-information">
+
+            <h2>
+                Artwork Information
+            </h2>
+
+
+            <div class="artwork-info-item">
+
+                <p>
+                    Hair Glove, 2023
+                </p>
+
+                <p>
+                    Etching
+                </p>
+
+                <p>
+                    13 × 20 cm, Edition of 12
+                </p>
+
+
+                <br>
+
+
+                <p>
+                    Hair Glove — Framed, 2023
+                </p>
+
+                <p>
+                    Etching
+                </p>
+
+                <p>
+                    13 × 20 cm, Edition of 12
+                </p>
+
+
+                <br>
+
+
+                <p>
+                    The Glove, 2023
+                </p>
+
+                <p>
+                    Human hair
+                </p>
+
+                <p>
+                    Sculpture
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- Instagram -->
+
+    <a
+    href="https://www.instagram.com/fanzhiweiart/"
+    target="_blank"
+    class="instagram"
+    aria-label="Instagram"
+>
+    Instagram
+</a>
+
+
+<!-- Image Lightbox -->
+
+<div class="image-lightbox" id="imageLightbox">
+
+    <img id="lightboxImage" src="" alt="">
+
+</div>
+
+
+<a
+    href="https://www.instagram.com/fanzhiweiart/"
+    target="_blank"
+    class="instagram"
+    aria-label="Instagram"
+>
+    Instagram
+</a>
+
+
+<!-- Image Lightbox -->
+
+<div class="image-lightbox" id="imageLightbox">
+
+    <img id="lightboxImage" src="" alt="">
+
+</div>
+
+
+<a
+    href="https://www.instagram.com/fanzhiweiart/"
+    target="_blank"
+    class="instagram"
+    aria-label="Instagram"
+>
+    Instagram
+</a>
+
+
+<!-- Image Lightbox -->
+
+<div class="image-lightbox" id="imageLightbox">
+
+    <img id="lightboxImage" src="" alt="">
+
+</div>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const lightbox = document.getElementById("imageLightbox");
+
+    const lightboxImage = document.getElementById("lightboxImage");
+
+    const projectImages = document.querySelectorAll(".project-image img");
+
+
+    projectImages.forEach(function (image) {
+
+        image.addEventListener("dblclick", function () {
+
+            lightboxImage.src = image.src;
+
+            lightboxImage.alt = image.alt;
+
+            lightbox.classList.add("active");
+
+        });
+
+    });
+
+
+    lightbox.addEventListener("click", function () {
+
+        lightbox.classList.remove("active");
+
+        lightboxImage.src = "";
+
+    });
+
+
+    document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Escape") {
+
+            lightbox.classList.remove("active");
+
+            lightboxImage.src = "";
+
+        }
+
+    });
+
+});
+
+</script>
+
+
+</body>
+
+</html>

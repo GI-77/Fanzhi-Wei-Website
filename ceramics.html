@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ceramics — Fanzhi Wei</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         Header
+    ========================= -->
+
+    <header class="site-header">
+
+        <a href="index.html" class="artist-name">
+            Fanzhi Wei
+        </a>
+
+
+        <nav class="main-navigation">
+
+            <a href="index.html">
+                Overview
+            </a>
+
+
+            <div class="work-menu">
+
+                <a href="select-work.html" class="work-link">
+                    Select Work
+                </a>
+
+
+                <div class="work-dropdown">
+
+                    <a href="entangled-body.html">
+                        Entangled Body Series
+                    </a>
+
+                    <a href="a-place-to-grow.html">
+                        A Place to Grow
+                    </a>
+
+                    <a href="hair-glove.html">
+                        Hair Glove
+                    </a>
+
+                    <a href="printmaking.html">
+                        Printmaking
+                    </a>
+
+                    <a href="material-trace.html">
+                        Material / Trace
+                    </a>
+
+                    <a href="ceramics.html">
+                        Ceramics
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <a href="about.html">
+                About
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================
+         Ceramic Project
+    ========================= -->
+
+    <main class="project-page">
+
+
+        <!-- Project Header -->
+
+        <section class="project-header">
+
+            <h1>
+                Fortunate / Filling
+            </h1>
+
+
+            <div class="project-statement">
+
+                <p>
+                    This work explores cultural translation through food, migration and everyday consumption. It brings together Chinese dumplings and fortune cookies—visually similar forms with very different cultural histories. Although Fortune cookies do not originating from traditional Chinese food culture, they are closely related to Chinese cuisine
+
+
+Made as hollow white ceramic objects and displayed in glass jars on a dining table, the forms shift between food, domestic object and cultural commodity. Their emptiness suggests how cultural identities and practices can be continually filled, adapted and reshaped through migration, consumption and exchange.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             Artwork Images
+        ========================= -->
+
+        <section class="project-images">
+
+
+            <figure class="project-image">
+
+                <img
+                    src="images/Fortunate-Filling06.jpg"
+                    alt="Fortunate / Filling"
+                >
+
+
+                <figcaption>
+
+                    Fortunate / Filling, 2024
+
+                </figcaption>
+
+            </figure>
+
+
+            
+
+
+        </section>
+
+         <section class="project-images">
+
+
+            <figure class="project-image">
+
+                <img
+                    src="images/Fortunate Filling01.jpg"
+                    alt="Fortunate / Filling"
+                >
+
+
+                <figcaption>
+
+                    Fortunate / Filling, 2024
+
+                </figcaption>
+
+            </figure>
+
+            
+            
+
+
+        </section>
+
+        </section>
+
+         <section class="project-images">
+
+
+            <figure class="project-image">
+
+                <img
+                    src="images/Fortunate Filling03.jpg"
+                    alt="Fortunate / Filling"
+                >
+
+
+                <figcaption>
+
+                    Fortunate / Filling, 2024
+
+                </figcaption>
+
+            </figure>
+
+            
+            
+
+
+        </section>
+
+
+
+        <!-- =========================
+             Artwork Information
+        ========================= -->
+
+        <section class="artwork-information">
+
+            <h2>
+                Artwork Information
+            </h2>
+
+
+            <div class="artwork-info-item">
+
+                <p>
+                    <strong>Title</strong><br>
+                    Fortunate / Filling
+                </p>
+
+                <p>
+                    <strong>Year</strong><br>
+                    2024
+                </p>
+
+                <p>
+                    <strong>Material</strong><br>
+                    Ceramic, glass jars
+                </p>
+
+                <p>
+                    <strong>Dimensions</strong><br>
+                    Variable
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         Instagram
+    ========================= -->
+
+    <a
+        href="https://www.instagram.com/fanzhiweiart/"
+        target="_blank"
+        class="instagram"
+        aria-label="Instagram"
+    >
+        Instagram
+    </a>
+
+
+
+    <!-- =========================
+         Global Image Lightbox
+    ========================= -->
+
+    <div class="image-lightbox" id="imageLightbox">
+
+        <img
+            src=""
+            alt=""
+            class="lightbox-image"
+            id="lightboxImage"
+        >
+
+    </div>
+
+
+
+    <!-- =========================
+         Image Fullscreen
+    ========================= -->
+
+    <script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const lightbox =
+            document.getElementById("imageLightbox");
+
+        const lightboxImage =
+            document.getElementById("lightboxImage");
+
+        const projectImages =
+            document.querySelectorAll(".project-image img");
+
+
+        projectImages.forEach(function (image) {
+
+            image.addEventListener("dblclick", function (event) {
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                lightboxImage.src = image.src;
+                lightboxImage.alt = image.alt;
+
+                lightbox.classList.add("active");
+
+                document.body.classList.add("lightbox-open");
+
+            });
+
+        });
+
+
+        /* Close */
+
+        lightbox.addEventListener("click", function (event) {
+
+            if (event.target === lightbox) {
+
+                lightbox.classList.remove("active");
+
+                lightboxImage.src = "";
+
+                document.body.classList.remove("lightbox-open");
+
+            }
+
+        });
+
+
+        /* ESC */
+
+        document.addEventListener("keydown", function (event) {
+
+            if (event.key === "Escape") {
+
+                lightbox.classList.remove("active");
+
+                lightboxImage.src = "";
+
+                document.body.classList.remove("lightbox-open");
+
+            }
+
+        });
+
+    });
+
+    </script>
+
+
+</body>
+
+</html>

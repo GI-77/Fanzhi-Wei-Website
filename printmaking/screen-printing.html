@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Screen Printing — Fanzhi Wei</title>
+
+    <link
+        rel="stylesheet"
+        href="../style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- Header -->
+
+    <header class="site-header">
+
+        <a
+            href="../index.html"
+            class="artist-name"
+        >
+            Fanzhi Wei
+        </a>
+
+
+        <nav class="main-navigation">
+
+            <a href="../index.html">
+                Overview
+            </a>
+
+
+            <div class="work-menu">
+
+                <a
+                    href="../select-work.html"
+                    class="work-link"
+                >
+                    Select Work
+                </a>
+
+
+                <div class="work-dropdown">
+
+    
+                    <a href="../entangled-body.html">
+        
+                        Entangled Body Series
+   
+                    </a>
+
+   
+                    <a href="../a-place-to-grow.html">
+       
+                        A Place to Grow
+   
+                    </a>
+
+   
+                    <a href="../hair-glove.html">
+       
+                        Hair Glove
+  
+                    </a>
+
+ 
+                    <a href="../printmaking.html">
+       
+                        Printmaking
+   
+                    </a>
+
+  
+                    <a href="../material-trace.html">
+       
+                        Material / Trace
+   
+                    </a>
+
+   
+                    <a href="../ceramics.html">
+      
+                        Ceramics
+  
+  
+                    </a>
+
+
+                </div>
+
+            </div>
+
+
+            <a href="../about.html">
+                About
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- Project -->
+
+    <main class="project-page">
+
+
+        <!-- Project Header -->
+
+        <section class="project-header">
+
+            <h1>
+                Screen Printing
+            </h1>
+
+
+            <div class="project-statement">
+
+                <p>
+                    Screen printing allows colour, image and gesture
+                    to accumulate through layers of transferred ink.
+                    These works explore repetition and visual traces
+                    through the relationship between printed surface,
+                    colour and image.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Artwork Images -->
+
+        <section class="project-images">
+
+
+            <!-- Artwork 01 -->
+
+            <figure class="project-image">
+
+                <img
+                    src="../images/Samsara-80x120cm-2021.jpg"
+                    alt="Samsara"
+                    class="screenprint-image"
+                >
+
+                <figcaption>
+
+                    Samsara, 2021<br>
+
+                    Screen printing on Hahnemühle
+                    100% cotton acid-free printmaking paper<br>
+
+                    80 × 120 cm, Edition of 12
+
+                </figcaption>
+
+            </figure>
+
+
+
+            <!-- Artwork 02 -->
+
+            <figure class="project-image">
+
+                <img
+                    src="../images/Thorn-80x60cm-2021.jpg"
+                    alt="Thorn"
+                    class="screenprint-image"
+                >
+
+                <figcaption>
+
+                    Thorn, 2021<br>
+
+                    Screen printing on Hahnemühle
+                    100% cotton acid-free printmaking paper<br>
+
+                    80 × 60 cm, Edition of 12
+
+                </figcaption>
+
+            </figure>
+
+
+
+            <!-- Artwork 03 -->
+
+            <figure class="project-image">
+
+                <img
+                    src="../images/The-Black-Sheep-40x60cm-2021.jpg"
+                    alt="The Black Sheep"
+                    class="screenprint-image"
+                >
+
+                <figcaption>
+
+                    The Black Sheep, 2021<br>
+
+                    Screen printing on Hahnemühle
+                    100% cotton acid-free printmaking paper<br>
+
+                    40 × 60 cm, Edition of 12
+
+                </figcaption>
+
+            </figure>
+
+
+
+            <!-- Artwork 04 -->
+
+            <figure class="project-image">
+
+                <img
+                    src="../images/The-Black-Dog-40x60cm-2021.jpg"
+                    alt="The Black Dog"
+                    class="screenprint-image"
+                >
+
+                <figcaption>
+
+                    The Black Dog, 2021<br>
+
+                    Screen printing on Hahnemühle
+                    100% cotton acid-free printmaking paper<br>
+
+                    40 × 60 cm, Edition of 12
+
+                </figcaption>
+
+            </figure>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- Instagram -->
+
+    <a
+        href="https://www.instagram.com/fanzhiweiart/"
+        target="_blank"
+        class="instagram"
+        aria-label="Instagram"
+    >
+        Instagram
+    </a>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const images = document.querySelectorAll(".screenprint-image");
+
+    let activeImage = null;
+
+    let dragging = false;
+
+    let startX = 0;
+    let startY = 0;
+
+    let startTranslateX = 0;
+    let startTranslateY = 0;
+
+    ;const SCALE = 2.5
+
+
+    /* =========================
+       Double Click
+    ========================= */
+
+    images.forEach(function (image) {
+
+        image.addEventListener("dblclick", function (event) {
+
+            event.preventDefault();
+
+            /*
+             * Double click while normal:
+             * Zoom in
+             */
+
+            if (!image.classList.contains("zoomed")) {
+
+    /* =========================
+       Close other zoomed images
+    ========================= */
+
+    images.forEach(function (otherImage) {
+
+        if (otherImage !== image) {
+
+            otherImage.classList.remove("zoomed");
+            otherImage.classList.remove("dragging");
+
+            otherImage.style.transform =
+                "translate(0px, 0px) scale(1)";
+
+            otherImage.dataset.x = "0";
+            otherImage.dataset.y = "0";
+
+        }
+
+    });
+
+
+    /* =========================
+       Zoom selected image
+    ========================= */
+
+    activeImage = image;
+
+    image.classList.add("zoomed");
+
+    image.style.transform =
+        "translate(0px, 0px) scale(" +
+        SCALE +
+        ")";
+
+    image.dataset.x = "0";
+    image.dataset.y = "0";
+
+    return;
+}
+
+
+            /*
+             * Double click while zoomed:
+             * Zoom out
+             */
+
+            image.classList.remove("zoomed");
+            image.classList.remove("dragging");
+
+            image.style.transform =
+                "translate(0px, 0px) scale(1)";
+
+            image.dataset.x = "0";
+            image.dataset.y = "0";
+
+            activeImage = null;
+
+        });
+
+    });
+
+
+
+    /* =========================
+       Mouse Down
+    ========================= */
+
+    images.forEach(function (image) {
+
+        image.addEventListener("mousedown", function (event) {
+
+            if (!image.classList.contains("zoomed")) {
+                return;
+            }
+
+            event.preventDefault();
+
+            activeImage = image;
+
+            dragging = true;
+
+            startX = event.clientX;
+            startY = event.clientY;
+
+            startTranslateX =
+                parseFloat(image.dataset.x || 0);
+
+            startTranslateY =
+                parseFloat(image.dataset.y || 0);
+
+            image.classList.add("dragging");
+
+        });
+
+    });
+
+
+
+    /* =========================
+       Mouse Move
+    ========================= */
+
+    document.addEventListener("mousemove", function (event) {
+
+        if (!dragging || !activeImage) {
+            return;
+        }
+
+        event.preventDefault();
+
+        const currentX =
+            startTranslateX +
+            (event.clientX - startX);
+
+        const currentY =
+            startTranslateY +
+            (event.clientY - startY);
+
+
+        activeImage.dataset.x = currentX;
+        activeImage.dataset.y = currentY;
+
+
+        activeImage.style.transform =
+            "translate(" +
+            currentX +
+            "px, " +
+            currentY +
+            "px) scale(" +
+            SCALE +
+            ")";
+
+    });
+
+
+
+    /* =========================
+       Mouse Up
+    ========================= */
+
+    document.addEventListener("mouseup", function () {
+
+        if (!dragging) {
+            return;
+        }
+
+        dragging = false;
+
+        if (activeImage) {
+            activeImage.classList.remove("dragging");
+        }
+
+    });
+
+});
+
+</script>
+</body>
+
+</html>

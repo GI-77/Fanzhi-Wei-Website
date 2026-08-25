@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fanzhi Wei</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+
+        <a href="index.html" class="artist-name">
+            Fanzhi Wei
+        </a>
+
+        <nav class="main-navigation">
+
+            <a href="index.html">Overview</a>
+
+            <div class="work-menu">
+                <a href="select-work.html" class="work-link">
+    
+                    Select Work
+
+                </a>
+
+                <div class="work-dropdown">
+
+    <a href="entangled-body.html">
+        Entangled Body Series
+    </a>
+
+    <a href="a-place-to-grow.html">
+        A Place to Grow
+    </a>
+
+    <a href="hair-glove.html">
+        Hair Glove
+    </a>
+
+    <a href="printmaking.html">
+        Printmaking
+    </a>
+
+    <a href="material-trace.html">
+        Material / Trace
+    </a>
+
+    <a href="ceramics.html">
+        Ceramics
+    </a>
+
+</div>
+            </div>
+
+            <a href="about.html">About</a>
+
+        </nav>
+
+    </header>
+
+
+   <!-- Main artwork area -->
+<main class="overview">
+
+    <!-- Previous button -->
+    <button class="slider-button slider-prev" aria-label="Previous artwork">
+        ←
+    </button>
+
+
+    <!-- Artwork slider -->
+    <div class="artwork-scroll">
+
+
+
+        <!-- Artwork 01 -->
+        <article class="overview-artwork">
+
+            <div class="image-container">
+
+                <img
+                    src="images/Entangled Body exhibition shooting02.png"
+                    alt="Entangled Body"
+                >
+
+                <div class="artwork-title">
+                    Entangled Body
+                </div>
+
+            </div>
+
+        </article>
+
+        <!-- Artwork 02 -->
+        <article class="overview-artwork">
+
+            <div class="image-container">
+
+                <img
+                    src="images/Entangled-Body-35x50cm.jpg"
+                    alt="Entangled Body"
+                >
+
+                <div class="artwork-title">
+                    Entangled Body
+                </div>
+
+            </div>
+
+        </article>
+        <!-- Artwork 03 -->
+        <article class="overview-artwork">
+
+            <div class="image-container">
+
+                <img
+                    src="images/A-Place-to-Grow-exhibitionshooting01.jpg"
+                    alt="A Place to Grow"
+                >
+
+                <div class="artwork-title">
+                    A Place to Grow
+                </div>
+
+            </div>
+
+        </article>
+
+        
+
+        </article>
+        <!-- Artwork 04 -->
+        <article class="overview-artwork">
+
+            <div class="image-container">
+
+                <img
+                    src="images/Hair-Glove-13 x20cm.jpg"
+                    alt="Hair Glove"
+                >
+
+                <div class="artwork-title">
+                    Hair Glove
+                </div>
+
+            </div>
+
+        </article>
+
+        <!-- Artwork 05 -->
+        <article class="overview-artwork">
+
+            <div class="image-container">
+
+                <img
+                    src="images/Occupied-Absence.jpg"
+                    alt="Occupied Absence"
+                >
+
+                <div class="artwork-title">
+                    Occupied Absence
+                </div>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+
+    <!-- Next button -->
+    <button class="slider-button slider-next" aria-label="Next artwork">
+        →
+    </button>
+
+
+
+</main>
+
+        <!-- Instagram -->
+    <a 
+        href="https://www.instagram.com/fanzhiweiart/"
+        target="_blank"
+        class="instagram"
+        aria-label="Instagram"
+    >
+        Instagram
+    </a>
+
+
+    
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const artworkScroll =
+        document.querySelector(".artwork-scroll");
+
+    const artworks =
+        Array.from(
+            document.querySelectorAll(".overview-artwork")
+        );
+
+    const prevButton =
+        document.querySelector(".slider-prev");
+
+    const nextButton =
+        document.querySelector(".slider-next");
+
+
+    if (
+        !artworkScroll ||
+        artworks.length === 0 ||
+        !prevButton ||
+        !nextButton
+    ) {
+        return;
+    }
+
+
+    /* =========================
+       Create clones
+    ========================= */
+
+    const firstClone =
+        artworks[0].cloneNode(true);
+
+    const lastClone =
+        artworks[artworks.length - 1].cloneNode(true);
+
+
+    firstClone.classList.add("slider-clone");
+
+    lastClone.classList.add("slider-clone");
+
+
+    artworkScroll.appendChild(firstClone);
+
+    artworkScroll.insertBefore(
+        lastClone,
+        artworkScroll.firstChild
+    );
+
+
+    const allArtworks =
+        Array.from(
+            artworkScroll.querySelectorAll(
+                ".overview-artwork"
+            )
+        );
+
+
+    /*
+    Original first artwork is now index 1.
+    */
+
+    let currentIndex = 1;
+
+
+    /* =========================
+       Initial position
+    ========================= */
+
+    function setInitialPosition() {
+
+        allArtworks[currentIndex].scrollIntoView({
+
+            behavior: "instant",
+
+            block: "nearest",
+
+            inline: "center"
+
+        });
+
+    }
+
+
+    setInitialPosition();
+
+
+    /* =========================
+       Move artwork
+    ========================= */
+
+    function moveTo(index) {
+
+        currentIndex = index;
+
+
+        allArtworks[currentIndex].scrollIntoView({
+
+            behavior: "smooth",
+
+            block: "nearest",
+
+            inline: "center"
+
+        });
+
+
+        /*
+        If moving to the clone,
+        correct the position after
+        the animation finishes.
+        */
+
+        setTimeout(function () {
+
+
+            /*
+            Last clone
+            */
+
+            if (currentIndex === 0) {
+
+                currentIndex =
+                    artworks.length;
+
+                allArtworks[currentIndex].scrollIntoView({
+
+                    behavior: "instant",
+
+                    block: "nearest",
+
+                    inline: "center"
+
+                });
+
+            }
+
+
+            /*
+            First clone
+            */
+
+            if (
+                currentIndex ===
+                allArtworks.length - 1
+            ) {
+
+                currentIndex = 1;
+
+                allArtworks[currentIndex].scrollIntoView({
+
+                    behavior: "instant",
+
+                    block: "nearest",
+
+                    inline: "center"
+
+                });
+
+            }
+
+        }, 450);
+
+    }
+
+
+    /* =========================
+       Next
+    ========================= */
+
+    nextButton.addEventListener(
+        "click",
+        function () {
+
+            moveTo(
+                currentIndex + 1
+            );
+
+        }
+    );
+
+
+    /* =========================
+       Previous
+    ========================= */
+
+    prevButton.addEventListener(
+        "click",
+        function () {
+
+            moveTo(
+                currentIndex - 1
+            );
+
+        }
+    );
+
+
+    /* =========================
+       Mouse wheel
+    ========================= */
+
+    artworkScroll.addEventListener(
+        "wheel",
+        function (event) {
+
+            if (
+                Math.abs(event.deltaY) <=
+                Math.abs(event.deltaX)
+            ) {
+
+                return;
+
+            }
+
+
+            event.preventDefault();
+
+
+            if (event.deltaY > 0) {
+
+                moveTo(
+                    currentIndex + 1
+                );
+
+            } else {
+
+                moveTo(
+                    currentIndex - 1
+                );
+
+            }
+
+        },
+        {
+            passive: false
+        }
+    );
+
+});
+
+</script>
+</body>
+</html>
