@@ -1201,3 +1201,10 @@ body.lightbox-open {
     opacity: 0.5;
 
 }
+/* =========================
+   Ceramic Project
+========================= */
+
+.ceramic-images {
+    gap: 160px;
+}
