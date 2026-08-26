@@ -27,9 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
     =========================
     */
 
-    let scale = 2.5;
+    let scale = 1.5;
 
-    const OPEN_SCALE = 2.5;
+    const OPEN_SCALE = 1.5;
 
     const MIN_SCALE = 1.0;
 
