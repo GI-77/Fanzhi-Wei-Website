@@ -269,7 +269,53 @@ body {
 
     object-fit: contain;
 }
+@media (max-width: 700px) {
 
+    .overview {
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
+    }
+
+    .artwork-scroll {
+        position: relative;
+
+        top: 90px;
+
+        width: 100%;
+        height: calc(100vh - 90px);
+
+        padding-left: 0;
+        padding-right: 0;
+
+        gap: 0;
+
+        overflow-x: auto;
+    }
+
+    .overview-artwork {
+        flex: 0 0 100vw;
+        width: 100vw;
+        height: 100%;
+    }
+
+    .overview-artwork img {
+        width: 100vw;
+        max-width: 100vw;
+        max-height: none;
+
+        height: auto;
+
+        object-fit: contain;
+    }
+
+    /* 手机端隐藏左右箭头 */
+
+    .slider-button {
+        display: none;
+    }
+
+}
 
 /* Artwork title */
 
@@ -295,7 +341,7 @@ body {
 ========================= */
 
 .instagram {
-    position: fixed;
+    position: absolute;
 
     left: 30px;
     bottom: 25px;
@@ -313,11 +359,7 @@ body {
 }
 
 
-/* =========================
-   Mobile
-========================= */
 
-@media (max-width: 700px) {
 /* =========================
    About Mobile
 ========================= */
@@ -425,52 +467,34 @@ body {
     }
 
 }
-   .site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
+   @media (max-width: 700px) {
 
-    width: 100%;
-    height: 90px;
+    .site-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 90px;
 
-    padding: 0 30px;
+        padding: 0 18px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-    gap: 120px;
+        gap: 35px;
 
-    z-index: 100;
-}
-
-    .artist-name {
-        font-size: 28px;
-        line-height: 1;
+        z-index: 100;
     }
-
-    .main-navigation {
-        gap: 12px;
-        font-size: 12px;
-    }
-
-    .overview {
-        padding-top: 70px;
-    }
-
-    .artwork-scroll {
-        padding-left: 5vw;
-        padding-right: 5vw;
-
-        gap: 5vw;
-    }
-
-   
 
     .instagram {
+        position: absolute;
         left: 18px;
-        bottom: 18px;
+        bottom: auto;
+        top: auto;
+        margin-top: 0;
     }
+
 }
 /* =========================
    Select Work Page
