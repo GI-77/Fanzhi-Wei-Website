@@ -27,7 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
     =========================
     */
 
-    let scale = 1.3;
+    let scale = 2.5;
+
+    const OPEN_SCALE = 2.5;
 
     const MIN_SCALE = 1.0;
 
@@ -101,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
             lightboxImage.alt = image.alt || "";
 
 
-            scale = 1.3;
+            scale = OPEN_SCALE;
 
             x = 0;
 
@@ -116,6 +118,28 @@ document.addEventListener("DOMContentLoaded", function () {
             document.body.classList.add(
                 "lightbox-open"
             );
+
+        }
+    );
+
+
+    /*
+    =========================
+    Double Click
+    Image → Close
+    =========================
+    */
+
+    lightboxImage.addEventListener(
+        "dblclick",
+        function (event) {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+
+            closeLightbox();
 
         }
     );
@@ -280,18 +304,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /*
     =========================
-    Close
+    Close Background
     =========================
     */
 
     lightbox.addEventListener(
         "click",
         function (event) {
-
-            /*
-            Only clicking the
-            background closes.
-            */
 
             if (
                 event.target === lightbox
@@ -332,7 +351,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /*
     =========================
-    Close function
+    Close Function
     =========================
     */
 
@@ -350,7 +369,7 @@ document.addEventListener("DOMContentLoaded", function () {
         lightboxImage.src = "";
 
 
-        scale = 1.3;
+        scale = OPEN_SCALE;
 
         x = 0;
 
