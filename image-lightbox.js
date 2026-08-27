@@ -41,10 +41,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let lastTap = 0;
 
+    /* =========================
+       Mobile Touch State
+    ========================= */
+
     let touchMode = null;
 
     let startDistance = 0;
     let startScale = 1;
+
+    /*
+       Prevent pinch gestures from
+       being interpreted as double taps.
+    */
+    let isPinching = false;
+
+    /*
+       Used to distinguish a real tap
+       from a drag / pinch gesture.
+    */
+    let touchMoved = false;
 
 
     /* =========================
@@ -111,11 +127,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
         dragging = false;
 
+        touchMode = null;
+
+        isPinching = false;
+
+        touchMoved = false;
+
     }
 
 
     /* =========================
        Desktop Double Click
+       DO NOT CHANGE
     ========================= */
 
     document.addEventListener(
@@ -142,6 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =========================
        Desktop Wheel Zoom
+       DO NOT CHANGE
     ========================= */
 
     lightbox.addEventListener(
@@ -183,6 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =========================
        Desktop Drag Start
+       DO NOT CHANGE
     ========================= */
 
     lightboxImage.addEventListener(
@@ -209,6 +234,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =========================
        Desktop Drag
+       DO NOT CHANGE
     ========================= */
 
     document.addEventListener(
@@ -237,6 +263,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =========================
        Desktop Drag End
+       DO NOT CHANGE
     ========================= */
 
     document.addEventListener(
@@ -254,7 +281,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================
-       Mobile Touch
+       Mobile / iPad Touch Start
     ========================= */
 
     lightboxImage.addEventListener(
@@ -263,7 +290,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
             event.preventDefault();
 
+            touchMoved = false;
+
+
+            /* =========================
+               One Finger
+            ========================= */
+
             if (event.touches.length === 1) {
+
+                /*
+                   Do not start a normal drag
+                   while a pinch is active.
+                */
+
+                if (isPinching) {
+                    return;
+                }
 
                 touchMode = "drag";
 
@@ -276,11 +319,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 startImageX = x;
                 startImageY = y;
 
+                return;
             }
+
+
+            /* =========================
+               Two Fingers
+            ========================= */
 
             if (event.touches.length === 2) {
 
+                /*
+                   Enter pinch mode immediately.
+                */
+
                 touchMode = "pinch";
+
+                isPinching = true;
+
+                touchMoved = true;
 
                 startDistance =
                     getDistance(
@@ -300,7 +357,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================
-       Mobile Touch Move
+       Mobile / iPad Touch Move
     ========================= */
 
     lightboxImage.addEventListener(
@@ -309,34 +366,72 @@ document.addEventListener("DOMContentLoaded", function () {
 
             event.preventDefault();
 
+
+            /* =========================
+               One Finger Drag
+            ========================= */
+
             if (event.touches.length === 1) {
 
-                if (touchMode !== "drag") {
+                if (
+                    touchMode !== "drag" ||
+                    isPinching
+                ) {
                     return;
                 }
+
+                const currentX =
+                    event.touches[0].clientX;
+
+                const currentY =
+                    event.touches[0].clientY;
+
+
+                /*
+                   Detect actual movement.
+                */
+
+                if (
+                    Math.abs(currentX - startX) > 5 ||
+                    Math.abs(currentY - startY) > 5
+                ) {
+
+                    touchMoved = true;
+
+                }
+
 
                 x =
                     startImageX +
                     (
-                        event.touches[0].clientX -
+                        currentX -
                         startX
                     );
 
                 y =
                     startImageY +
                     (
-                        event.touches[0].clientY -
+                        currentY -
                         startY
                     );
 
                 updateImage();
 
+                return;
             }
 
+
+            /* =========================
+               Two Finger Pinch
+            ========================= */
 
             if (event.touches.length === 2) {
 
                 touchMode = "pinch";
+
+                isPinching = true;
+
+                touchMoved = true;
 
                 const distance =
                     getDistance(
@@ -344,9 +439,16 @@ document.addEventListener("DOMContentLoaded", function () {
                         event.touches[1]
                     );
 
+                if (startDistance === 0) {
+                    return;
+                }
+
                 scale =
                     startScale *
-                    (distance / startDistance);
+                    (
+                        distance /
+                        startDistance
+                    );
 
                 scale = Math.max(
                     MIN_SCALE,
@@ -368,21 +470,108 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================
-       Mobile Touch End
+       Mobile / iPad Touch End
     ========================= */
 
     lightboxImage.addEventListener(
         "touchend",
         function (event) {
 
-            if (
-                event.touches.length === 0
-            ) {
+            /*
+               IMPORTANT:
+               If this was a pinch gesture,
+               do NOT run double-tap detection.
+            */
 
-                touchMode = null;
+            if (isPinching) {
+
+                /*
+                   Wait until ALL fingers
+                   have left the screen.
+                */
+
+                if (
+                    event.touches.length === 0
+                ) {
+
+                    isPinching = false;
+
+                    touchMode = null;
+
+                    touchMoved = false;
+
+                    /*
+                       Reset tap timer so the
+                       pinch cannot become a
+                       false double tap.
+                    */
+
+                    lastTap = 0;
+
+                }
+
+                return;
 
             }
 
+
+            /* =========================
+               Normal One Finger Touch End
+            ========================= */
+
+            if (
+                event.changedTouches.length !== 1
+            ) {
+                return;
+            }
+
+            /*
+               If the finger moved,
+               this was a drag, not a tap.
+            */
+
+            if (touchMoved) {
+
+                touchMode = null;
+
+                touchMoved = false;
+
+                return;
+
+            }
+
+
+            /*
+               Double tap closes Lightbox.
+            */
+
+            const now =
+                Date.now();
+
+            const timeSinceLastTap =
+                now - lastTap;
+
+
+            if (
+                timeSinceLastTap < 300
+            ) {
+
+                closeLightbox();
+
+                lastTap = 0;
+
+                return;
+
+            }
+
+
+            lastTap = now;
+
+            touchMode = null;
+
+        },
+        {
+            passive: false
         }
     );
 
@@ -391,7 +580,10 @@ document.addEventListener("DOMContentLoaded", function () {
        Calculate Pinch Distance
     ========================= */
 
-    function getDistance(touch1, touch2) {
+    function getDistance(
+        touch1,
+        touch2
+    ) {
 
         const dx =
             touch1.clientX -
@@ -410,7 +602,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================
-       Mobile Single Tap
+       Background Tap
     ========================= */
 
     lightbox.addEventListener(
@@ -418,7 +610,7 @@ document.addEventListener("DOMContentLoaded", function () {
         function (event) {
 
             /*
-             Only background tap closes.
+               Only background click closes.
             */
 
             if (
@@ -434,41 +626,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================
-       Mobile Tap Detection
-    ========================= */
-
-    lightboxImage.addEventListener(
-        "touchend",
-        function (event) {
-
-            if (event.changedTouches.length !== 1) {
-                return;
-            }
-
-            const now =
-                Date.now();
-
-            const timeSinceLastTap =
-                now - lastTap;
-
-            /*
-             Double tap closes.
-            */
-
-            if (timeSinceLastTap < 300) {
-
-                closeLightbox();
-
-            }
-
-            lastTap = now;
-
-        }
-    );
-
-
-    /* =========================
        ESC
+       DO NOT CHANGE
     ========================= */
 
     document.addEventListener(
