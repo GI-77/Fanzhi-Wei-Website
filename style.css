@@ -1351,7 +1351,30 @@ body.lightbox-open {
        Project Images
     ========================= */
 
-    .project-images {
+    .project-image {
+    width: 100%;
+    max-width: none;
+}
+
+.project-image img {
+    display: block;
+
+    width: 80vw;
+    max-width: 80vw;
+
+    height: auto;
+
+    object-fit: contain;
+}
+
+.project-image figcaption {
+    width: 80vw;
+
+    margin-top: 10px;
+
+    font-size: 10px;
+    line-height: 1.5;
+}.project-images {
         width: 100%;
 
         gap: 100px;
