@@ -144,7 +144,7 @@ body {
     position: relative;
 
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 90px);
 
     overflow: hidden;
 }
@@ -199,17 +199,17 @@ body {
 
 
 /* =========================
-   Horizontal artwork scrolling area
+   Homepage Artwork Slider
 ========================= */
 
 .artwork-scroll {
     position: absolute;
 
-    top: 90px;
+    top: 0;
     left: 0;
 
     width: 100%;
-    height: calc(100vh - 90px);
+    height: 100%;
 
     display: flex;
     align-items: center;
@@ -233,7 +233,7 @@ body {
 
 
 /* =========================
-   Each artwork
+   Each Homepage Artwork
 ========================= */
 
 .overview-artwork {
@@ -252,7 +252,7 @@ body {
 
 
 /* =========================
-   Overview Image Container
+   Homepage Image Container
 ========================= */
 
 .image-container {
@@ -266,7 +266,7 @@ body {
 
 
 /* =========================
-   Overview Artwork Image
+   Homepage Artwork Image
 ========================= */
 
 .overview-artwork img {
@@ -1195,95 +1195,94 @@ body.lightbox-open {
     }
 
 
-    /* =====================================================
-       Homepage / Overview
-    ===================================================== */
-
-    .overview {
-        position: relative;
-
-        width: 100%;
-
-        /*
-        Header is now part of normal page flow.
-        Reserve space for the mobile header.
-        */
-        height: calc(100vh - 130px);
-
-        min-height: 0;
-
-        overflow: hidden;
-    }
-
-
-    .artwork-scroll {
-        position: relative;
-
-        top: 0;
-        left: 0;
-
-        width: 100%;
-
-        height: 100%;
-
-        padding-left: 0;
-        padding-right: 0;
-
-        gap: 0;
-
-        overflow-x: auto;
-        overflow-y: hidden;
-
-        scroll-snap-type: x mandatory;
-    }
-
-
-    .overview-artwork {
-        flex: 0 0 100vw;
-
-        width: 100vw;
-
-        height: 100%;
-
-        scroll-snap-align: center;
-    }
-
-
-    .image-container {
-        width: 100vw;
-
-        max-width: none;
-
-        max-height: none;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-    }
-
-
-    .overview-artwork img {
-        width: 100vw;
-
-        max-width: 100vw;
-
-        max-height: 100%;
-
-        height: auto;
-
-        object-fit: contain;
-    }
-
-
     /* =========================
-       Hide Homepage Arrows
-    ========================= */
+   Overview / Homepage
+========================= */
 
-    .slider-button {
-        display: none;
-    }
+.overview {
+    position: relative;
+
+    width: 100%;
+
+    /*
+       Header occupies its own space.
+       Overview fills the remaining screen.
+    */
+    height: calc(100vh - 90px);
+
+    overflow: hidden;
+}
+
+
+.artwork-scroll {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    padding-left: 0;
+    padding-right: 0;
+
+    gap: 0;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scroll-snap-type: x mandatory;
+}
+
+
+.overview-artwork {
+    flex: 0 0 100vw;
+
+    width: 100vw;
+    height: 100%;
+
+    scroll-snap-align: center;
+}
+
+
+.image-container {
+    width: 100vw;
+
+    max-width: none;
+    max-height: none;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.overview-artwork img {
+    display: block;
+
+    width: 100vw;
+
+    max-width: 100vw;
+
+    /*
+       Image stays inside the area BELOW header.
+    */
+    max-height: calc(100vh - 90px);
+
+    height: auto;
+
+    object-fit: contain;
+}
+
+
+/* =========================
+   Hide Homepage Arrows
+========================= */
+
+.slider-button {
+    display: none;
+}
 
 
     /* =====================================================
