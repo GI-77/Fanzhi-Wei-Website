@@ -1579,3 +1579,10 @@ body.lightbox-open {
         column-gap: 20px;
     }
 }
+.site-footer {
+    width: 100%;
+    text-align: center;
+    padding: 60px 0 30px;
+    font-size: 12px;
+}
+   
