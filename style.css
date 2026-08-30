@@ -69,9 +69,12 @@ body {
 }
 
 .main-navigation a {
-    color: black;
+    color: #999;
     text-decoration: none;
     white-space: nowrap;
+}
+.main-navigation a.active {
+    color: black;
 }
 
 .main-navigation a:hover {
@@ -612,34 +615,7 @@ body {
 
 .printmaking-category:hover {
     
-/* =========================
-   Printmaking Artwork Images
-========================= */
 
-.project-images .project-image {
-    width: 45vw;
-    max-width: 600px;
-
-    margin: 0 auto;
-}
-
-.project-images .project-image img {
-    width: 100%;
-    height: auto;
-
-    display: block;
-}
-
-.project-images .project-image figcaption {
-    width: 100%;
-
-    text-align: left;
-
-    margin-top: 10px;
-
-    font-size: 12px;
-    line-height: 1.5;
-}
 
 
 /* =========================
