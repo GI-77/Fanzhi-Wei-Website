@@ -623,41 +623,35 @@ body {
    Detail Image Grid
 ========================= */
 
-/* =========================
-   Material / Trace
-   Detail Image Grid
-========================= */
-
 .detail-image-grid {
     width: 70%;
 
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
 
     display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
     column-gap: 50px;
     row-gap: 120px;
+
+    align-items: start;
 }
 
 
-.detail-image {
-    width: 100% !important;
-
-    margin: 0 !important;
+.detail-image-grid .detail-image {
+    width: 100%;
+    margin: 0;
 }
 
 
-.detail-image img {
+.detail-image-grid .detail-image img {
     display: block;
 
     width: 100%;
-
     height: auto;
-}
 
+    object-fit: contain;
+}
 
 /* =========================
    Global Image Lightbox
