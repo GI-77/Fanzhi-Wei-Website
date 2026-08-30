@@ -479,7 +479,7 @@ body {
 
 
 .project-image:has(.portrait-image) figcaption {
-    width: 43vw;
+    width: 100vw;
 }
 
 
