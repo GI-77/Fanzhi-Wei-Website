@@ -454,7 +454,7 @@ body {
 .project-image {
     margin: 0;
 
-    width: 100%;
+    width: 70vw;
 
     display: flex;
     flex-direction: column;
@@ -479,14 +479,14 @@ body {
 
 
 .project-image:has(.portrait-image) figcaption {
-    width: 100vw;
+    width: 70vw;
 }
 
 
 .project-image img {
     display: block;
 
-    width: 100vw;
+    width: 70vw;
 
     height: auto;
 
