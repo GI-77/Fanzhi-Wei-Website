@@ -623,6 +623,11 @@ body {
    Detail Image Grid
 ========================= */
 
+/* =========================
+   Material / Trace
+   Detail Image Grid
+========================= */
+
 .detail-image-grid {
     width: 70%;
 
@@ -635,8 +640,6 @@ body {
 
     column-gap: 50px;
     row-gap: 120px;
-
-    justify-content: center;
 }
 
 
@@ -653,9 +656,6 @@ body {
     width: 100%;
 
     height: auto;
-
-    margin-left: auto;
-    margin-right: auto;
 }
 
 
