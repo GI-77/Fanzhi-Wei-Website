@@ -621,7 +621,7 @@ body {
 
 /* =========================
    Material / Trace
-   Detail Image Grid
+   Detail Image Groups
 ========================= */
 
 .detail-image-grid {
@@ -629,23 +629,34 @@ body {
 
     margin: 0 auto;
 
+    display: flex;
+    flex-direction: column;
+
+    gap: 120px;
+}
+
+
+/* Two images in each group */
+
+.detail-image-pair {
+    width: 100%;
+
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
 
     column-gap: 50px;
-    row-gap: 120px;
-
-    align-items: start;
 }
 
 
-.detail-image-grid .detail-image {
+/* Individual image */
+
+.detail-image {
     width: 100%;
     margin: 0;
 }
 
 
-.detail-image-grid .detail-image img {
+.detail-image img {
     display: block;
 
     width: 100%;
@@ -654,6 +665,20 @@ body {
     object-fit: contain;
 }
 
+
+/* Information below each pair */
+
+.detail-caption {
+    width: 100%;
+
+    margin-top: 12px;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+    text-align: left;
+}
 /* =========================
    Global Image Lightbox
 ========================= */
