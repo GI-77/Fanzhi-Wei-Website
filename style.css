@@ -213,7 +213,7 @@ body {
     left: 0;
 
     width: 100%;
-    height: calc(100% - 90px)%;
+    height: calc(100% - 90px);
 
     display: flex;
     align-items: center;
